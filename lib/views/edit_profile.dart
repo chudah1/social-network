@@ -22,6 +22,7 @@ class _EditFormState extends State<EditForm> {
   String _food = "";
   String _movie = "";
   String _dateOfBirth = "";
+  String _passsword = "";
   int _yearGroup = DateTime.now().year;
   final _editController = UserController();
 
@@ -37,7 +38,9 @@ class _EditFormState extends State<EditForm> {
           campusResidence: _campusResidence,
           yearGroup: _yearGroup,
           movie: _movie,
-          food: _food);
+          food: _food,
+          password: _passsword
+          );
       await _editController.editUser(userCreated);
     }
   }
@@ -187,14 +190,12 @@ class _EditFormState extends State<EditForm> {
                           ),
                           CheckboxListTile(
                               title: Text("Campus Residence?"),
-                              value: user.campusResidence, 
+                              value: user.campusResidence,
                               // selected: true,
                               onChanged: ((value) {
-                                _campusResidence = !value!;
-                                print(_campusResidence);
-                                // setState(() {
-                                //   _campusResidence = value!;
-                                // });
+                                setState(() {
+                                  _campusResidence = value!;
+                                });
                               })),
                           Padding(
                             padding: EdgeInsets.symmetric(vertical: 16.0),

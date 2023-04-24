@@ -21,7 +21,7 @@ class UserProfile extends StatelessWidget {
             } else if (snapshot.hasError) {
               return Text("Error: ${snapshot.error}");
             }
-            
+
             final user = snapshot.data!;
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,

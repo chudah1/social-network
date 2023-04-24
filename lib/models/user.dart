@@ -10,12 +10,12 @@ class User {
   int yearGroup;
   String movie;
   String food;
+  String password;
 
   /// This is a constructor for the `User` class that takes in required parameters `idNumber`, `name`,
   /// `email`, `dateOfBirth`, `major`, `campusResidence`, `yearGroup`, `movie`, and `food`. When an
   /// object of the `User` class is created, these parameters must be provided.
-  User(
-    {
+  User({
     required this.idNumber,
     required this.name,
     required this.email,
@@ -25,6 +25,7 @@ class User {
     required this.yearGroup,
     required this.movie,
     required this.food,
+    required this.password
   });
 
   //function that converts an object's properties into a JSON format.
@@ -37,7 +38,8 @@ class User {
         "campusResidence": campusResidence,
         "yearGroup": yearGroup,
         "movie": movie,
-        "food": food
+        "food": food,
+        "password":password
       };
 
   /// This is a factory method in Dart that takes in a JSON object and returns a User object with the
@@ -60,6 +62,8 @@ class User {
         campusResidence: json['campusResidence'],
         yearGroup: json['yearGroup'],
         movie: json['movie'],
-        food: json['food']);
+        food: json['food'],
+        password: json['password']
+        );
   }
 }

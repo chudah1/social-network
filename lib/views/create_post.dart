@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:social_network/controllers/post_controller.dart';
 import 'package:social_network/models/post.dart';
 
@@ -41,13 +39,10 @@ class _PostFormState extends State<PostForm> {
                         // crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 20),
+                            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                             child: TextFormField(
                               validator: (value) {
-                                return (value == null || value.isEmpty)
-                                    ? 'Please enter email'
-                                    : null;
+                                return (value == null || value.isEmpty) ? 'Please enter email' : null;
                               },
                               onSaved: (newValue) => _userEmail = newValue!,
                               decoration: const InputDecoration(
@@ -58,13 +53,10 @@ class _PostFormState extends State<PostForm> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 10),
+                            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                             child: TextFormField(
                               validator: (value) {
-                                return (value == null || value.isEmpty)
-                                    ? 'Please enter your content'
-                                    : null;
+                                return (value == null || value.isEmpty) ? 'Please enter your content' : null;
                               },
                               onSaved: (newValue) => _postContent = newValue!,
                               decoration: const InputDecoration(
@@ -73,20 +65,12 @@ class _PostFormState extends State<PostForm> {
                                   label: Text("Name"),
                                   prefixIcon: Icon(Icons.person)),
                             ),
-
-                            
                           ),
-                            Padding(
-                          padding: EdgeInsets.symmetric(vertical: 16.0),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 16.0),
                             child: ElevatedButton.icon(
-                           onPressed: _createPost,
-                            icon: Icon(Icons.app_registration),
-                              label: Text("Submit")),
-                )
-                        ])
-                        )
-                        )
-                        )
-                        );
+                                onPressed: _createPost, icon: Icon(Icons.app_registration), label: Text("Submit")),
+                          )
+                        ])))));
   }
 }
