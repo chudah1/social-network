@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:social_network/widgets/form_field_widget.dart';
 import 'package:social_network/controllers/user_controller.dart';
 import 'package:social_network/models/user.dart';
-import 'package:social_network/widgets/date_form_field.dart';
 import 'package:intl/intl.dart';
 
 class EditPage extends StatefulWidget {
@@ -31,10 +30,11 @@ class _EditPageState extends State<EditPage> {
   String _password = "";
   bool _campusResidence = true;
 
+/// This function edits a user's profile and saves the changes.
   void _editProfile() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      final userCreated = User(
+      final userEdited = User(
           idNumber: _idNumber,
           name: _name,
           email: _email,
@@ -45,13 +45,18 @@ class _EditPageState extends State<EditPage> {
           movie: _movie,
           food: _food,
           password: _password);
-      final success = await _userController.editUser(userCreated);
+      final success = await _userController.editUser(userEdited);
 
+/// The above code is showing an AlertDialog with a title and content based on whether a profile was
+/// successfully edited or not. If the profile was edited successfully, the title will be "Success" and
+/// the content will be "Profile edited successfully". If the profile was not edited successfully, the
+/// title will be "Failure" and the content will be "Failed to edit User". The AlertDialog also has an
+/// "OK" button that will dismiss the dialog if the profile was edited successfully.
       showDialog(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              backgroundColor: Colors.purpleAccent,
+              backgroundColor: Color(0xff764abc),
               title: Text(success ? "Success" : "Failure"),
               content: Text(success
                   ? "Profile edited successfully"
@@ -59,7 +64,9 @@ class _EditPageState extends State<EditPage> {
               actions: [
                 TextButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      if (success) {
+                        context.pop();
+                      }
                     },
                     child: Text("OK"))
               ],
@@ -72,8 +79,8 @@ class _EditPageState extends State<EditPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Title(color: Colors.purpleAccent, child: Text("AshNetwork")),
-          backgroundColor: Colors.purpleAccent,
+          title: Title(color: Color(0xff764abc), child: Text("AshNetwork")),
+          backgroundColor: Color(0xff764abc),
           centerTitle: true,
         ),
         backgroundColor: Colors.transparent,
@@ -87,7 +94,7 @@ class _EditPageState extends State<EditPage> {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [Image.asset("assets/images/collab.png")],
+                  children: [Image.asset("assets/images/edit.png")],
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 400),
@@ -291,7 +298,7 @@ class _EditPageState extends State<EditPage> {
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(18)),
-                                      backgroundColor: Colors.purpleAccent,
+                                      backgroundColor: Color(0xff764abc),
                                       foregroundColor: Colors.black,
                                     ),
                                   ),

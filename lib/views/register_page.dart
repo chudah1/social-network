@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:social_network/widgets/form_field_widget.dart';
 import 'package:social_network/controllers/user_controller.dart';
 import 'package:social_network/models/user.dart';
-import 'package:social_network/widgets/date_form_field.dart';
 import 'package:intl/intl.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -27,6 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
   String _password = "";
   bool _campusResidence = true;
 
+  /// This function creates a user profile and saves it to the database.
   void _createProfile() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
@@ -43,6 +43,9 @@ class _RegisterPageState extends State<RegisterPage> {
           password: _password);
       final success = await _userController.createUser(userCreated);
 
+      /// The above code is showing an AlertDialog with a title and content based on whether a profile was
+      /// successfully created or not. It also has an "OK" button that dismisses the dialog and navigates to
+      /// the login screen if the profile was successfully created.
       showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -56,7 +59,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 TextButton(
                     onPressed: () {
                       if (success) {
-                        context.goNamed("posts");
+                        context.goNamed("login");
                       }
                       Navigator.of(context).pop();
                     },
@@ -71,14 +74,15 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Title(color: Colors.purpleAccent, child: Text("AshNetwork")),
+          title: Title(
+              color: Colors.purpleAccent, child: const Text("AshNetwork")),
           backgroundColor: Colors.purpleAccent,
           centerTitle: true,
         ),
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
             child: Padding(
-          padding: EdgeInsets.only(left: 40, right: 20, top: 10),
+          padding: const EdgeInsets.only(left: 40, right: 20, top: 10),
           child: Center(
             child: SizedBox(
               width: double.maxFinite,
@@ -200,7 +204,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               const SizedBox(
                                 width: 30,
                               ),
-                              Container(
+                              SizedBox(
                                 height: 100,
                                 child: SizedBox(
                                   width: 250,
@@ -209,7 +213,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                     readOnly: true,
                                     decoration: InputDecoration(
                                       hintText: "Date of Birth",
-                                      prefixIcon: Icon(Icons.calendar_month),
+                                      prefixIcon:
+                                          const Icon(Icons.calendar_month),
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(10),
                                       ),
@@ -278,7 +283,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(18)),
-                                backgroundColor: Colors.purpleAccent,
+                                backgroundColor: const Color(0xff764abc),
                                 foregroundColor: Colors.black,
                               ),
                             ),

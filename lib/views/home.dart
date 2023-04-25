@@ -22,14 +22,16 @@ class Home extends StatelessWidget {
                         children: const <Widget>[
                           Text(
                             "Welcome To The AshNetwork",
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.w800),
                           ),
                           SizedBox(
                             height: 20.0,
                           ),
                           Text(
                             "Connect with your friends",
-                            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
+                            style: TextStyle(
+                                fontSize: 20.0, fontWeight: FontWeight.w500),
                           ),
                         ],
                       )),
@@ -37,7 +39,8 @@ class Home extends StatelessWidget {
                     ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
                           fixedSize: const Size.fromHeight(30.0),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0)),
                           backgroundColor: Colors.black,
                           foregroundColor: Colors.white,
                           // padding: EdgeInsets.all(10.0),
@@ -54,8 +57,9 @@ class Home extends StatelessWidget {
                     ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
                           fixedSize: const Size.fromHeight(30),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-                          backgroundColor: Colors.purpleAccent,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0)),
+                          backgroundColor: Color(0xff764abc),
                           foregroundColor: Colors.black,
                           padding: const EdgeInsets.all(10.0),
                           elevation: 3.0),

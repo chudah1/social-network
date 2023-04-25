@@ -10,15 +10,17 @@ class UserService {
   static const url = 'us-central1-social-network-rest-api.cloudfunctions.net';
   static const endpoint = '/profile-api';
 
-  /// This function creates a user profile by sending a POST request to a specified endpoint with the user
-  /// data in JSON format and returns the created user object.
+  /// This function creates a user profile by registering the user with Firebase authentication and
+  /// sending their information to a specified endpoint using HTTP POST.
   ///
   /// Args:
-  ///   user (User): The user object that contains the data to be sent in the request body. It is encoded
-  /// as JSON using the `toJson()` method before being sent in the request body.
+  ///   user (User): The `User` object contains information about the user that needs to be created,
+  /// including their email, password, and any other relevant details. This information is used to
+  /// create a new user account using Firebase Authentication. The `toJson()` method is called on the
+  /// `User` object to convert it to a
   ///
   /// Returns:
-  ///   The function `createProfile` returns a `Future` object that resolves to a `User` object.
+  ///   a `Future` object that resolves to an `http.Response` object.
   static Future<http.Response> createProfile(User user) async {
     http.Response? response;
     try {
@@ -44,14 +46,12 @@ class UserService {
     return response!;
   }
 
-  /// This function edits a user's profile by sending a PUT request to a specified endpoint with the
-  /// user's updated information in JSON format.
+  /// This function edits a user's profile and returns a Future object containing an HTTP response.
   ///
   /// Args:
-  ///   user (User): The user object that contains the updated profile information.
-  ///
-  /// Returns:
-  ///   a Future object that resolves to a User object.
+  ///   user (User): The `user` parameter is an instance of the `User` class, which contains information
+  /// about a user's profile. This method is used to edit a user's profile by sending a request to the
+  /// server with the updated user information.
   static Future<http.Response> editProfile(User user) async {
     Uri parseUri = Uri.https(url, endpoint)
         .replace(queryParameters: {'idNumber': user.idNumber});
@@ -61,16 +61,15 @@ class UserService {
     return response;
   }
 
-  /// The function retrieves a user profile by sending a GET request to a specified endpoint with an ID
-  /// number as a query parameter and returns a User object parsed from the JSON response.
+  /// The function retrieves a user's profile by sending a GET request to a specified endpoint with the
+  /// user's ID number as a query parameter.
   ///
   /// Args:
   ///   idNumber (String): The idNumber parameter is a string that represents the unique identifier of a
-  /// user's profile. It is used to retrieve the user's profile information from a server using an HTTP
-  /// GET request.
+  /// user's profile. It is used to retrieve the profile information from the server.
   ///
   /// Returns:
-  ///   The `getProfile` function is returning a `Future` object that resolves to a `User` object.
+  ///   The function `getProfile` returns a `Future` object that resolves to an `http.Response` object.
   static Future<http.Response> getProfile(String idNumber) async {
     Uri parseUri = Uri.https(url, endpoint)
         .replace(queryParameters: {'idNumber': idNumber});
@@ -78,18 +77,23 @@ class UserService {
     return response;
   }
 
+  /// This function attempts to sign in a user with their email and password using Firebase authentication
+  /// and handles any exceptions that may occur.
+  ///
+  /// Args:
+  ///   email (String): A string representing the email address of the user trying to sign in.
+  ///   password (String): The password parameter is a string that represents the user's password that
+  /// they are trying to use to sign in to their account.
   static Future<void> signIn(String email, String password) async {
     try {
-      auth.UserCredential userCredential =
-          await auth.FirebaseAuth.instance.signInWithEmailAndPassword(
+      await auth.FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
       // User signed in successfully
     } on auth.FirebaseAuthException catch (e) {
-      // Handle sign-in errors
+      print(e);
     } catch (e) {
-      // Handle other errors
       print(e);
     }
   }

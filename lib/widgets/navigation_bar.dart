@@ -16,7 +16,6 @@ class NavBar extends StatelessWidget {
               child: Image.asset('assets/images/ashesi.jpg'),
             ),
           ],
-        )
-        );
+        ));
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:social_network/routes/profile_params.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+/// The function initializes Firebase and sets up the routing for a Flutter social networking app.
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -12,5 +13,6 @@ void main() async {
           projectId: "flutter-social-network-a15ee"));
   Routes route = Routes();
 
-  runApp(MaterialApp.router(title: "Ashesi Social Network", routerConfig: route.router));
+  runApp(MaterialApp.router(
+      title: "Ashesi Social Network", routerConfig: route.router));
 }

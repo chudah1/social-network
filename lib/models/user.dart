@@ -15,18 +15,17 @@ class User {
   /// This is a constructor for the `User` class that takes in required parameters `idNumber`, `name`,
   /// `email`, `dateOfBirth`, `major`, `campusResidence`, `yearGroup`, `movie`, and `food`. When an
   /// object of the `User` class is created, these parameters must be provided.
-  User({
-    required this.idNumber,
-    required this.name,
-    required this.email,
-    required this.dateOfBirth,
-    required this.major,
-    required this.campusResidence,
-    required this.yearGroup,
-    required this.movie,
-    required this.food,
-    required this.password
-  });
+  User(
+      {required this.idNumber,
+      required this.name,
+      required this.email,
+      required this.dateOfBirth,
+      required this.major,
+      required this.campusResidence,
+      required this.yearGroup,
+      required this.movie,
+      required this.food,
+      required this.password});
 
   //function that converts an object's properties into a JSON format.
   Map<String, dynamic> toJson() => {
@@ -39,7 +38,7 @@ class User {
         "yearGroup": yearGroup,
         "movie": movie,
         "food": food,
-        "password":password
+        "password": password
       };
 
   /// This is a factory method in Dart that takes in a JSON object and returns a User object with the
@@ -63,7 +62,6 @@ class User {
         yearGroup: json['yearGroup'],
         movie: json['movie'],
         food: json['food'],
-        password: json['password']
-        );
+        password: json['password']);
   }
 }

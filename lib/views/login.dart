@@ -17,11 +17,20 @@ class _LoginPageState extends State<LoginPage> {
   String _password = "";
   final _userController = UserController();
 
+  /// This function validates user input and signs in the user if the input is valid.
   _login() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       final success = await _userController.signInUser(_email, _password);
 
+   /// The `showDialog` function is displaying an alert dialog box with a message indicating whether the
+   /// user has successfully logged in or not. If the user has successfully logged in, the dialog box
+   /// displays a message "Logged In successfully" and an "OK" button. If the user has entered the wrong
+   /// email or password, the dialog box displays a message "Wrong email or Password" and an "OK"
+   /// button. When the user clicks the "OK" button, the dialog box is closed and the `checkAuth`
+   /// function is called to check the user's authentication status. If the user is authenticated, the
+   /// `goNamed` function is called to navigate to the student profile page with the user's ID number as
+   /// a parameter.
       showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -38,7 +47,8 @@ class _LoginPageState extends State<LoginPage> {
                         String idNumber =
                             await _userController.checkAuth(context);
                         print("id $idNumber");
-                        context.goNamed("studentProfile", params: {"idNumber":idNumber});
+                        context.goNamed("studentProfile",
+                            params: {"idNumber": idNumber});
                       }
                       Navigator.of(context).pop();
                     },
@@ -53,8 +63,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Title(color: Colors.purpleAccent, child: Text("AshNetwork")),
-          backgroundColor: Colors.purpleAccent,
+          title: Title(color: Color(0xff764abc), child: Text("AshNetwork")),
+          backgroundColor: Color(0xff764abc),
           centerTitle: true,
         ),
         backgroundColor: Colors.transparent,
@@ -127,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                                                       BorderRadius.circular(
                                                           18)),
                                               backgroundColor:
-                                                  Colors.purpleAccent,
+                                                  Color(0xff764abc),
                                               foregroundColor: Colors.black,
                                             ),
                                           )

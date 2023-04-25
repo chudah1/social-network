@@ -20,6 +20,18 @@ class CustomDateFormField extends StatefulWidget {
 
 class _CustomDateFormFieldState extends State<CustomDateFormField> {
   @override
+/// This function returns a container with a sized text form field widget that has various properties
+/// and functions assigned to it.
+/// 
+/// Args:
+///   context (BuildContext): The BuildContext is a handle to the location of a widget in the widget
+/// tree. It is used by the framework to locate and update the widget in the tree. It is passed as a
+/// parameter to the build() method of a widget.
+/// 
+/// Returns:
+///   A Container widget containing a TextFormField widget with various properties such as height,
+/// width, decoration, and validation. The TextFormField widget also has an onTap function that is
+/// passed from the parent widget through the onTap property.
   Widget build(BuildContext context) {
     return Container(
         height: 100,
